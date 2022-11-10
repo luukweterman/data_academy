@@ -23,10 +23,10 @@ df.index = pd.DatetimeIndex(df.index)
 # Let's fix the column names by chopping off the first 3 characters
 df.rename(columns=lambda s: s[3:], inplace=True)
 
-print(df.head())
 print(df[['open', 'high', 'low', 'close']].plot())
 
 # Let's take last value of the close column for every business day
 close_per_day = df.close.resample('B').last()
 
 print(close_per_day.plot())
+
