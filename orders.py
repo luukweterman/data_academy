@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Orders:
     def __init__(self, stock_name, choose_stock, investment_date):
 
