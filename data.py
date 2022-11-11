@@ -2,10 +2,13 @@ import requests
 import pandas as pd
 
 #retrieving data from server
-response2 = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=TSCO.LON&outputsize=full&apikey=demo")
-response3 = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=GPV.TRV&outputsize=full&apikey=demo")
-response4 = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=DAI.DEX&outputsize=full&apikey=demo")
-response5 = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=600104.SHH&outputsize=full&apikey=demo")
+client = requests.Session() #added this to make it faster (RJ recommended)
+response2 = client.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=TSCO.LON&outputsize=full&apikey=demo")
+response3 = client.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=GPV.TRV&outputsize=full&apikey=demo")
+response4 = client.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=000002.SHZ&outputsize=full&apikey=demo")
+#response4 = client.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=DAI.DEX&outputsize=full&apikey=demo")
+#changed the stock to 000002.SHZ since the DAI.DEX did not have values
+response5 = client.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=600104.SHH&outputsize=full&apikey=demo")
 
 # The service sends JSON data, we parse that into a Python datastructure
 raw_data2 = response2.json()
@@ -29,11 +32,11 @@ print(df2.head())
 dataframe = pd.DataFrame()
 dataframe['TSCO_stock'] = df2['4. close']
 dataframe['GPV.TRV'] = df3['4. close']
-dataframe['DAI.DEX'] = df4['4. close']
+dataframe['000002.SHZ'] = df4['4. close']
 dataframe['SHH'] = df5['4. close']
 
-print(dataframe.info)
-
+dataframe.info() #changed the code here
+print(dataframe.head()) #added to show overall stock closing prices
 
 #df2 = pd.DataFrame(data2).T.apply(pd.to_numeric)
 #df3 = pd.DataFrame(data3).T.apply(pd.to_numeric)
