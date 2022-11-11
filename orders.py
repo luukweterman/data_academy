@@ -20,3 +20,17 @@ class Orders:
 
     def stock_price
         dataframe[]
+
+class User:
+    def __init__(self, name):
+        self.name = name
+        self.sharequantity = 10
+        pass
+
+class Stock:
+    def __init__(self, name):
+        self.Stock = 0
+        self.name = name
+        self.quantity =
+        self.price = self.value
+        pass
