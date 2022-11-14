@@ -30,7 +30,7 @@ dataframe['TSCO.stock'] = df2['4. close']
 dataframe['GPV.TRV'] = df3['4. close']
 dataframe['000002.SHZ'] = df4['4. close']
 
-# stock_list = list(dataframe.columns)
+stock_list = list(dataframe.columns)
 # print(stock_list)
 
 ##### Functions
