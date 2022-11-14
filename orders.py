@@ -46,23 +46,24 @@ def stockprice(price_series, stock_name):
     last_price = price[0]
     return last_price
 
-def order(dataframe):
-    #inputs
 
+
+def order(dataframe, stock_name):
+    #inputs
     cash = int(input("Enter your cash balance: "))
     buy_or_sell = input("Enter your whether you want to buy [B] or sell [S]: ")
     quantity = int(input("Enter the amount of stocks: "))
-    stock_price = stockprice(dataframe)
+    stock_price = stockprice(dataframe, stock_name)
 
     #transaction and balance settlement
 
     price = stock_price * quantity
     if buy_or_sell == 'B':
         cash_balance = cash - price
-        print(cash_balance)
+        print(f"This is your updated cash_balance: {cash_balance}.")
     elif buy_or_sell == 'S':
         cash_balance = cash + price
-        print(cash_balance)
+        print(f"This is your updated cash_balance: {cash_balance}.")
     else:
         print("Please select the option buy [B] or sell [S]")
 
@@ -76,8 +77,9 @@ def order(dataframe):
         return f"This is your cash balance: {cash_balance}."
 #TESTING
 
-stockprice(dataframe, 'TSCO_stock')
+stockprice(dataframe, stock_list[0])
 ##### User input
+
 
 
 continue_game = "Y"
@@ -94,10 +96,8 @@ while continue_game == "Y":
             print("You selected a day where the stock price is not available")
             ### use stock_name as input for Luuk's retrieving of stock_price
         else:
-            order(dataframe)
-            stock_quantity = int(input("Please choose the amount of stocks you want to buy. Select an integer: ").strip())
-            #stock_price = from Luuks function
-            continue_game = input("Do you like to buy more stocks? (Y/N): ")
+            order(dataframe, stock_name)
+            continue_game = input("Do you like to buy/sell more stocks? (Y/N): ")
             if continue_game == "N":
                     print("Game Finished")
                     break

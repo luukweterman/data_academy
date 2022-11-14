@@ -52,15 +52,15 @@ def stockprice(price_series, stock_name):
     last_price = price[0]
     return last_price
 
-print(stockprice(df))
+print(stockprice(df, stock_list[0]))
 
-def order(dataframe):
+def order(dataframe, stock_name):
     #inputs
 
     cash = int(input("Enter your cash balance: "))
     buy_or_sell = input("Enter your whether you want to buy [B] or sell [S]: ")
     quantity = int(input("Enter the amount of stocks: "))
-    stock_price = stockprice(dataframe)
+    stock_price = stockprice(dataframe, stock_name)
 
     #transaction and balance settlement
 
@@ -83,7 +83,7 @@ def order(dataframe):
         print("Transaction not failed.")
         return f"This is your cash balance: {cash_balance}."
 
-order(df)
+order(df, stock_list[0])
 
 
 
